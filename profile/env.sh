@@ -37,8 +37,9 @@ discover_cluster() {
 
 discover_kadira() {
     if [ -f "/app/kadira.settings" ] && [[ $(awk '/meteorhacks:kadira/' /app/.meteor/packages) ]] && [ -z "${KADIRA_APP_ID}" ]; then
-      export KADIRA_APP_ID=`awk '/kadira_app_id/{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
-      export KADIRA_APP_SECRET=`awk '/kadira_app_secret/{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
+      export KADIRA_APP_ID=`awk '/KADIRA_APP_ID/{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
+      export KADIRA_APP_SECRET=`awk '/KADIRA_APP_SECRET{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
+      echo KADIRA_APP_ID is $KADIRA_APP_ID
     else
     echo "No automatic meteorhacks:kadira config required"
     fi
