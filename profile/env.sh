@@ -28,7 +28,7 @@ extract_couchdb_url() {
 }
 
 discover_cluster() {
-    if [ -d "/app/.meteor/local/plugin-cache/meteorhacks_cluster" ] && [ -z "${CLUSTER_WORKERS_COUNT}" ]; then
+    if [[ $(awk '/meteorhacks:cluster/' /app/.meteor/packages) ]] && [ -z "${CLUSTER_WORKERS_COUNT}" ]; then
      export CLUSTER_WORKERS_COUNT=auto
     else
     echo "No meteorhacks:cluster config required"
@@ -36,7 +36,7 @@ discover_cluster() {
 }
 
 discover_kadira() {
-    if [ -f "/app/kadira.settings" ] && [ -d "/app/.meteor/local/plugin-cache/meteorhacks_kadira" ] && [ -z "${KADIRA_APP_ID}" ]; then
+    if [ -f "/app/kadira.settings" ] && [[ $(awk '/meteorhacks:kadira/' /app/.meteor/packages) ]] && [ -z "${KADIRA_APP_ID}" ]; then
       export KADIRA_APP_ID=`awk '/kadira_app_id/{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
       export KADIRA_APP_SECRET=`awk '/kadira_app_secret/{ print $0 }' /app/kadira.settings | awk  -F"=" '{print $2}'`
     else

@@ -30,7 +30,7 @@ As with MONGO_URL this is parsed prior to runtime from VCAP_SERVICES, if you wis
 
 KADIRA_APP_ID and KADIRA_APP_SECRET are parsed from ./kadira.settings if the file exists and "meteorhacks:kadira" package is installed. This is the case unless they are explicitly defined on the application or in the manifest
 
-####kadira.settings should look like; 
+####kadira.settings should look like;
 ```
 KADIRA_APP_ID=<appid>
 KADIRA_APP_SECRET=<appsecret>
